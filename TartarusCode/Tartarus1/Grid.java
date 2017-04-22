@@ -342,4 +342,52 @@ public class Grid {
             System.out.println("Error while writing to file in fitness method");
         }
     }
+<<<<<<< HEAD
+
+    private void callNextMove(float[] moveProbs, Random moveGen) {
+        randNum = moveGen.nextFloat();
+        thisMove = 0;
+        for (int k = 0; k < 3; k++) {
+            thisMove += moveProbs[k];
+            if (randNum <= thisMove) {
+                if k = 0:
+                    left();
+                elif k = 1:
+                    forward();
+                elif k = 2:
+                    right();
+                break;
+            }
+        }
+    }
+
+    private void simulate(float L, float F, float R, boolean test3) {
+        Random moveGen = new Random();
+        float[] moveProbs = new float[3];
+        float[0] = L;
+        float[1] = F;
+        float[2] = R;
+        float randNum;
+        float thisMove;
+        for (int i = 0; i < 1000; i++) {
+            initGrid();
+            for (int j = 0; j < 80; j++) {
+                randNum = moveGen.nextFloat();
+                thisMove = 0;
+                for (int k = 0; k < 3; k++) {
+                    thisMove += moveProbs[k];
+                    if (randNum <= thisMove) {
+
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void main() {
+
+    }
+=======
+>>>>>>> 5d2cc87101717243da918a9076bdda6506acf4c2
 }
