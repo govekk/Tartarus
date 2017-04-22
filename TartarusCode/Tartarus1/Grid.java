@@ -342,52 +342,94 @@ public class Grid {
             System.out.println("Error while writing to file in fitness method");
         }
     }
-<<<<<<< HEAD
 
-    private void callNextMove(float[] moveProbs, Random moveGen) {
-        randNum = moveGen.nextFloat();
-        thisMove = 0;
+    private char callNextMove(double[] moveProbs, Random moveGen) {
+        double randNum = moveGen.nextDouble();
+        if (randNum == 1) {
+            randNum = 0.99999;
+        }
+        double thisMove = 0;
         for (int k = 0; k < 3; k++) {
             thisMove += moveProbs[k];
-            if (randNum <= thisMove) {
-                if k = 0:
+            if (randNum < thisMove) {
+                if (k == 0) {
                     left();
-                elif k = 1:
+                    return 'L';
+                }
+                else if (k == 1) {
                     forward();
-                elif k = 2:
+                    return 'F';
+                }
+                else if (k == 2) {
                     right();
-                break;
-            }
-        }
-    }
-
-    private void simulate(float L, float F, float R, boolean test3) {
-        Random moveGen = new Random();
-        float[] moveProbs = new float[3];
-        float[0] = L;
-        float[1] = F;
-        float[2] = R;
-        float randNum;
-        float thisMove;
-        for (int i = 0; i < 1000; i++) {
-            initGrid();
-            for (int j = 0; j < 80; j++) {
-                randNum = moveGen.nextFloat();
-                thisMove = 0;
-                for (int k = 0; k < 3; k++) {
-                    thisMove += moveProbs[k];
-                    if (randNum <= thisMove) {
-
-                        break;
-                    }
+                    return 'R';
                 }
             }
         }
+        return ' ';
     }
 
-    public void main() {
+    private void simulate(double L, double F, double R, boolean test3) {
+        Random moveGen = new Random();
 
+        // create all the probability arrays
+        double[] evenProbs = new double[3];
+        evenProbs[0] = L;
+        evenProbs[1] = F;
+        evenProbs[2] = R;
+        double[] noLeft = new double[3];
+        noLeft[0] = 0;
+        noLeft[1] = 0.5;
+        noLeft[2] = 0.5;
+        double[] noRight = new double[3];
+        noRight[0] = 0.5;
+        noRight[1] = 0.5;
+        noRight[2] = 0;
+
+        // start with even probabilities
+        double[] moveProbs = evenProbs;
+
+        double totalAfter80 = 0;
+        double totalAfter160 = 0;
+
+        // run 1000 trials
+        for (int i = 0; i < 1000; i++) {
+            initGrid();
+            for (int j = 0; j < 80; j++) {
+                char lastMove = callNextMove(moveProbs, moveGen);
+                if (test3) {
+                    if (lastMove == 'L') {
+                        moveProbs = noRight;
+                    } else if (lastMove == 'R') {
+                        moveProbs = noLeft;
+                    } else {
+                        moveProbs = evenProbs;
+                    }
+                }
+            }
+            totalAfter80 += calcFitness();
+            for (int j = 0; j < 80; j++) {
+                char lastMove = callNextMove(moveProbs, moveGen);
+                if (test3) {
+                    if (lastMove == 'L') {
+                        moveProbs = noRight;
+                    } else if (lastMove == 'R') {
+                        moveProbs = noLeft;
+                    } else {
+                        moveProbs = evenProbs;
+                    }
+                }
+            }
+            totalAfter160 += calcFitness();
+        }
+        System.out.println("After 80: " + (totalAfter80 / 1000));
+        System.out.println("After 160: " + (totalAfter160 / 1000));
     }
-=======
->>>>>>> 5d2cc87101717243da918a9076bdda6506acf4c2
+    public static void main(String[] args) {
+        Grid testGrid = new Grid();
+        double evenProb = 1/3;
+        testGrid.simulate(evenProb, evenProb, evenProb, false);
+        testGrid.simulate(0.2, 0.6, 0.2, false);
+        testGrid.simulate(evenProb, evenProb, evenProb, true);
+    }
 }
