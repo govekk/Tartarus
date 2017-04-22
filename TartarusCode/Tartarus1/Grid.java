@@ -342,6 +342,7 @@ public class Grid {
             System.out.println("Error while writing to file in fitness method");
         }
     }
+<<<<<<< HEAD
 
     private void callNextMove(float[] moveProbs, Random moveGen) {
         randNum = moveGen.nextFloat();
@@ -387,4 +388,6 @@ public class Grid {
     public void main() {
 
     }
+=======
+>>>>>>> 5d2cc87101717243da918a9076bdda6506acf4c2
 }
