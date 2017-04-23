@@ -5,22 +5,22 @@ public class Grid {
 
     //functions and terminals
     public final static int ZERO = 0;
-    public final static int ONE = 1; 
-    public final static int TWO = 2; 
-    public final static int UR = 3;  
+    public final static int ONE = 1;
+    public final static int TWO = 2;
+    public final static int UR = 3;
     public final static int MR = 4;
-    public final static int LR = 5;  
-    public final static int UM = 6;  
-    public final static int LM = 7;  
-    public final static int UL = 8;   
-    public final static int ML = 9;   
-    public final static int LL = 10;  
-    public final static int INC = 11;  
-    public final static int DEC = 12;  
-    public final static int ADD = 13;  
-    public final static int SUB = 14;  
-    public final static int MAX = 15;  
-    public final static int MIN = 16;  
+    public final static int LR = 5;
+    public final static int UM = 6;
+    public final static int LM = 7;
+    public final static int UL = 8;
+    public final static int ML = 9;
+    public final static int LL = 10;
+    public final static int INC = 11;
+    public final static int DEC = 12;
+    public final static int ADD = 13;
+    public final static int SUB = 14;
+    public final static int MAX = 15;
+    public final static int MIN = 16;
     public final static int ITE = 17;
 
 
@@ -37,7 +37,7 @@ public class Grid {
     public Grid(int xdim, int ydim, int numBoxes) {
 	this(xdim, ydim, numBoxes, -1);
     }
-    
+
     // create a Grid of characters with the given dimensions and number of boxes
     public Grid(int xdim, int ydim, int numBoxes, int seed) {
         this.xdim = xdim;
@@ -49,7 +49,7 @@ public class Grid {
         for (int i=0; i<xdim; i++)
             for (int j=0; j<ydim; j++)
                 grid[i][j] = ' ';
-	
+
 	// create rand generator (if seed is -1, use time instead)
 	if (seed == -1) rgen = new Random();
 	else rgen = new Random(seed);
@@ -433,7 +433,9 @@ public class Grid {
         simulate(0.2, 0.6, 0.2, false);
         System.out.println("Test 3: ");
         simulate(evenProb, evenProb, evenProb, true);
-        System.out.println("Our test: ");
+        System.out.println("Test 3 w/ Weights: ");
         simulate(0.2, 0.6, 0.2, true);
+        System.out.println("UPS Style:");
+        simulate(0, 0.7, 0.3, false);
     }
 }
