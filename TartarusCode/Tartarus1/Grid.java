@@ -343,7 +343,7 @@ public class Grid {
         }
     }
 
-    private char callNextMove(double[] moveProbs, Random moveGen) {
+    private char callNextMove(double[] moveProbs, Random moveGen, Grid trialGrid) {
         double randNum = moveGen.nextDouble();
         if (randNum == 1) {
             randNum = 0.99999;
@@ -353,15 +353,15 @@ public class Grid {
             thisMove += moveProbs[k];
             if (randNum < thisMove) {
                 if (k == 0) {
-                    this.left();
+                    trialGrid.left();
                     return 'L';
                 }
                 else if (k == 1) {
-                    this.forward();
+                    trialGrid.forward();
                     return 'F';
                 }
                 else if (k == 2) {
-                    this.right();
+                    trialGrid.right();
                     return 'R';
                 }
             }
@@ -394,9 +394,13 @@ public class Grid {
 
         // run 1000 trials
         for (int i = 0; i < 1000; i++) {
-            initGrid();
+            Grid trialGrid = new Grid(6,6,5);
+            trialGrid.initGrid();
             for (int j = 0; j < 80; j++) {
-                char lastMove = this.callNextMove(moveProbs, moveGen);
+                char lastMove = trialGrid.callNextMove(moveProbs, moveGen, trialGrid);
+                if (i == 0) {
+                    print();
+                }
                 if (test3) {
                     if (lastMove == 'L') {
                         moveProbs = noRight;
@@ -407,9 +411,9 @@ public class Grid {
                     }
                 }
             }
-            totalAfter80 += calcFitness();
+            totalAfter80 += trialGrid.calcFitness();
             for (int j = 0; j < 80; j++) {
-                char lastMove = this.callNextMove(moveProbs, moveGen);
+                char lastMove = trialGrid.callNextMove(moveProbs, moveGen, trialGrid);
                 if (test3) {
                     if (lastMove == 'L') {
                         moveProbs = noRight;
@@ -420,7 +424,7 @@ public class Grid {
                     }
                 }
             }
-            totalAfter160 += calcFitness();
+            totalAfter160 += trialGrid.calcFitness();
         }
         System.out.println("After 80: " + (totalAfter80 / 1000));
         System.out.println("After 160: " + (totalAfter160 / 1000));
@@ -431,5 +435,36 @@ public class Grid {
         thisGrid.simulate(evenProb, evenProb, evenProb, false);
         thisGrid.simulate(0.2, 0.6, 0.2, false);
         thisGrid.simulate(evenProb, evenProb, evenProb, true);
+
     }
+
+    /*private static void test3() {
+        Random moveGen = new Random();
+
+        // create all the probability arrays
+        double[] moveProbs = new double[3];
+        moveProbs[0] = 1/3;
+        moveProbs[1] = 1/3;
+        moveProbs[2] = 1/3;
+
+        double totalAfter80 = 0;
+        double totalAfter160 = 0;
+
+        // run 1000 trials
+        for (int i = 0; i < 1000; i++) {
+            Grid trialGrid = new Grid();
+            trialGrid.initGrid();
+            for (int j = 0; j < 80; j++) {
+                char lastMove = trialGrid.callNextMove(moveProbs, moveGen);
+            }
+            totalAfter80 += trialGrid.calcFitness();
+            for (int j = 0; j < 80; j++) {
+                char lastMove = trialGrid.callNextMove(moveProbs, moveGen);
+            }
+            totalAfter160 += trialGrid.calcFitness();
+        }
+        System.out.println("After 80: " + (totalAfter80 / 1000));
+        System.out.println("After 160: " + (totalAfter160 / 1000));
+
+    }*/
 }
