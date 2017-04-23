@@ -433,9 +433,7 @@ public class Grid {
         simulate(0.2, 0.6, 0.2, false);
         System.out.println("Test 3: ");
         simulate(evenProb, evenProb, evenProb, true);
-        System.out.println("Test 3 w/ Weights: ");
-        simulate(0.2, 0.6, 0.2, true);
         System.out.println("UPS Style:");
-        simulate(0, 0.7, 0.3, false);
+        simulate(0, 0.6, 0.4, false);
     }
 }
