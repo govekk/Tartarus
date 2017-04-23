@@ -369,7 +369,7 @@ public class Grid {
         return ' ';
     }
 
-    private void simulate(double L, double F, double R, boolean test3) {
+    private static void simulate(double L, double F, double R, boolean test3) {
         Random moveGen = new Random();
 
         // create all the probability arrays
@@ -395,12 +395,8 @@ public class Grid {
         // run 1000 trials
         for (int i = 0; i < 1000; i++) {
             Grid trialGrid = new Grid(6,6,5);
-            trialGrid.initGrid();
             for (int j = 0; j < 80; j++) {
                 char lastMove = trialGrid.callNextMove(moveProbs, moveGen, trialGrid);
-                if (i == 0) {
-                    print();
-                }
                 if (test3) {
                     if (lastMove == 'L') {
                         moveProbs = noRight;
@@ -430,41 +426,11 @@ public class Grid {
         System.out.println("After 160: " + (totalAfter160 / 1000));
     }
     public static void main(String[] args) {
-        Grid thisGrid = new Grid(6,6,5);
-        double evenProb = 1/3;
-        thisGrid.simulate(evenProb, evenProb, evenProb, false);
-        thisGrid.simulate(0.2, 0.6, 0.2, false);
-        thisGrid.simulate(evenProb, evenProb, evenProb, true);
+        double evenProb = 1.0/3;
+        simulate(evenProb, evenProb, evenProb, false);
+        simulate(0.2, 0.6, 0.2, false);
+        simulate(evenProb, evenProb, evenProb, true);
+        simulate(0.2, 0.6, 0.2, true);
 
     }
-
-    /*private static void test3() {
-        Random moveGen = new Random();
-
-        // create all the probability arrays
-        double[] moveProbs = new double[3];
-        moveProbs[0] = 1/3;
-        moveProbs[1] = 1/3;
-        moveProbs[2] = 1/3;
-
-        double totalAfter80 = 0;
-        double totalAfter160 = 0;
-
-        // run 1000 trials
-        for (int i = 0; i < 1000; i++) {
-            Grid trialGrid = new Grid();
-            trialGrid.initGrid();
-            for (int j = 0; j < 80; j++) {
-                char lastMove = trialGrid.callNextMove(moveProbs, moveGen);
-            }
-            totalAfter80 += trialGrid.calcFitness();
-            for (int j = 0; j < 80; j++) {
-                char lastMove = trialGrid.callNextMove(moveProbs, moveGen);
-            }
-            totalAfter160 += trialGrid.calcFitness();
-        }
-        System.out.println("After 80: " + (totalAfter80 / 1000));
-        System.out.println("After 160: " + (totalAfter160 / 1000));
-
-    }*/
 }
