@@ -379,11 +379,11 @@ public class Grid {
         evenProbs[2] = R;
         double[] noLeft = new double[3];
         noLeft[0] = 0;
-        noLeft[1] = 0.5;
-        noLeft[2] = 0.5;
+        noLeft[1] = F/(R+F);
+        noLeft[2] = R/(R+F);
         double[] noRight = new double[3];
-        noRight[0] = 0.5;
-        noRight[1] = 0.5;
+        noRight[0] = L/(L+F);
+        noRight[1] = F/(L+F);
         noRight[2] = 0;
 
         // start with even probabilities
@@ -427,10 +427,13 @@ public class Grid {
     }
     public static void main(String[] args) {
         double evenProb = 1.0/3;
+        System.out.println("Test 1: ");
         simulate(evenProb, evenProb, evenProb, false);
+        System.out.println("Test 2: ");
         simulate(0.2, 0.6, 0.2, false);
+        System.out.println("Test 3: ");
         simulate(evenProb, evenProb, evenProb, true);
+        System.out.println("Our test: ");
         simulate(0.2, 0.6, 0.2, true);
-
     }
 }
