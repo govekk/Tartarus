@@ -15,10 +15,7 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 
-import java.awt.Point;
-import java.io.*;
 import gpjpp.*;
-import java.util.*;
 
 //extend GPGene to evaluate Tartarus
 

@@ -18,8 +18,6 @@
 
 package gpjpp;
 
-import java.io.*;
-
 /**
  * Stores information about one function or terminal type in 
  * a particular genetic programming problem. GPNode objects are
