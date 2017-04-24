@@ -23,7 +23,8 @@ public class Grid {
     public final static int MIN = 16;
     public final static int ITE = 17;
     public final static int RAND = 18;
-
+    public final static int SENS = 19;
+    public final static int OURS = 20;
 
     // grid private vars
     private char[][] grid;

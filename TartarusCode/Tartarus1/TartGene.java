@@ -122,6 +122,18 @@ public class TartGene extends GPGene {
             Random rgen = new Random();
             return rgen.nextInt(3);
 
+        case Grid.SENS:
+            return cfg.dozerGrid.sensor(2, 0);
+
+        case Grid.OURS:
+            int oneFront = cfg.dozerGrid.sensor(1, 0);
+            int twoFront = cfg.dozerGrid.sensor(2, 0);
+            if (oneFront + twoFront < 2) {
+                return 2;
+            } else {
+                return 0;
+            }
+
         default:
             throw new RuntimeException("Undefined function type "+node.value());
         }
