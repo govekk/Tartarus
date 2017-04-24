@@ -20,20 +20,20 @@ import java.io.*;
 public class Grid {
 
     //functions and terminals
-    public final static int LFT = 0;
-    public final static int RGT = 1; 
-    public final static int FWD = 2; 
-    public final static int UR = 3;  
-    public final static int MR = 4;
-    public final static int LR = 5;  
-    public final static int UM = 6;  
-    public final static int LM = 7;  
-    public final static int UL = 8;   
-    public final static int ML = 9;   
-    public final static int LL = 10;
-    public final static int prog2 = 11;
-    public final static int prog3 = 12;
-    public final static int ahead2 = 13;
+//    public final static int LFT = 0;
+    public final static int RGT = 0;
+    public final static int FWD = 1;
+    public final static int UR = 2;
+    public final static int MR = 3;
+    public final static int LR = 4;
+    public final static int UM = 5;
+    public final static int LM = 6;
+    public final static int UL = 7;
+    public final static int ML = 8;
+    public final static int LL = 9;
+    public final static int prog2 = 10;
+    public final static int prog3 = 11;
+//    public final static int ahead2 = 12;
     
     // grid private vars
     private char[][] grid;

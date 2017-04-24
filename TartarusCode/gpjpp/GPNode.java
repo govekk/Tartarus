@@ -215,7 +215,7 @@ public class GPNode extends GPObject {
      * @throws java.io.IOException              if an error occurs while reading the stream.
      */
     protected synchronized void load(DataInputStream is)
-            throws ClassNotFoundException, IOException,
+        throws ClassNotFoundException, IOException,
             InstantiationException, IllegalAccessException {
 
         nodeValue = is.readInt();

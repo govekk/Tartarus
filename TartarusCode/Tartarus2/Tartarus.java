@@ -30,10 +30,10 @@ class Tartarus extends GPRun {
     // must override GPRun.createNodeSet to return 
     // initialized set of functions & terminals
     protected GPAdfNodeSet createNodeSet(GPVariables cfg) {
-        GPNodeSet ns0 = new GPNodeSet(14);
+        GPNodeSet ns0 = new GPNodeSet(12);
  
         //MAIN TREE
-        ns0.putNode(new GPNode(Grid.LFT, "left"));
+//        ns0.putNode(new GPNode(Grid.LFT, "left"));
         ns0.putNode(new GPNode(Grid.RGT, "right"));
         ns0.putNode(new GPNode(Grid.FWD, "forward"));
         ns0.putNode(new GPNode(Grid.UR, "ur", 3));
@@ -46,7 +46,7 @@ class Tartarus extends GPRun {
         ns0.putNode(new GPNode(Grid.LL, "ll", 3));
         ns0.putNode(new GPNode(Grid.prog2, "prog2", 2));
         ns0.putNode(new GPNode(Grid.prog3, "prog3", 3));
-        ns0.putNode(new GPNode(Grid.ahead2, "ahead2", 3));
+//        ns0.putNode(new GPNode(Grid.ahead2, "ahead2", 3));
 
 	// ADF - Do NOT change
 	GPAdfNodeSet adfNs = new GPAdfNodeSet(1);
