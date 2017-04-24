@@ -202,24 +202,20 @@ public class GPNode extends GPObject {
     }
 
     /**
-     * Loads a GPNode from the specified stream. Reads the 
+     * Loads a GPNode from the specified stream. Reads the
      * nodeValue, numOfArgs, and representation fields from the
      * stream.
      *
-     * @exception java.lang.ClassNotFoundException
-     *              if the class indicated by the stream's ID code
-     *              is not registered with GPObject.
-     * @exception java.lang.InstantiationException
-     *              if an error occurs while calling new or the null
-     *              constructor of the specified class.
-     * @exception java.lang.IllegalAccessException
-     *              if the specified class or its null constructor is
-     *              not public.
-     * @exception java.io.IOException
-     *              if an error occurs while reading the stream.
+     * @throws java.lang.ClassNotFoundException if the class indicated by the stream's ID code
+     *                                          is not registered with GPObject.
+     * @throws java.lang.InstantiationException if an error occurs while calling new or the null
+     *                                          constructor of the specified class.
+     * @throws java.lang.IllegalAccessException if the specified class or its null constructor is
+     *                                          not public.
+     * @throws java.io.IOException              if an error occurs while reading the stream.
      */
     protected synchronized void load(DataInputStream is)
-        throws ClassNotFoundException, IOException,
+            throws ClassNotFoundException, IOException,
             InstantiationException, IllegalAccessException {
 
         nodeValue = is.readInt();
@@ -228,12 +224,11 @@ public class GPNode extends GPObject {
     }
 
     /**
-     * Saves a GPNode to the specified stream. Writes the 
+     * Saves a GPNode to the specified stream. Writes the
      * nodeValue, numOfArgs, and representation fields to the
      * stream.
      *
-     * @exception java.io.IOException
-     *              if an error occurs while writing the stream.
+     * @throws java.io.IOException if an error occurs while writing the stream.
      */
     protected void save(DataOutputStream os) throws IOException {
 
@@ -249,5 +244,4 @@ public class GPNode extends GPObject {
     public void printOn(PrintStream os, GPVariables cfg) {
         os.print(representation);
     }
-
 }

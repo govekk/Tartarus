@@ -30,7 +30,10 @@ public class Grid {
     public final static int LM = 7;  
     public final static int UL = 8;   
     public final static int ML = 9;   
-    public final static int LL = 10;  
+    public final static int LL = 10;
+    public final static int prog2 = 11;
+    public final static int prog3 = 12;
+    public final static int ahead2 = 13;
     
     // grid private vars
     private char[][] grid;
@@ -53,16 +56,16 @@ public class Grid {
         this.ydim = ydim;
         this.numBoxes = numBoxes;
 
-	// grid is just 2d array of chars, initially fill with spaces
-	grid = new char[xdim][ydim];
-        for (int i=0; i<xdim; i++)
-            for (int j=0; j<ydim; j++)
-                grid[i][j] = ' ';
+        // grid is just 2d array of chars, initially fill with spaces
+        grid = new char[xdim][ydim];
+            for (int i=0; i<xdim; i++)
+                for (int j=0; j<ydim; j++)
+                    grid[i][j] = ' ';
 
-	// create rand generator (if seed is -1, use time instead)
-	if (seed == -1) rgen = new Random();
-	else rgen = new Random(seed);
-	
+        // create rand generator (if seed is -1, use time instead)
+        if (seed == -1) rgen = new Random();
+        else rgen = new Random(seed);
+
         steps = 0;
         initGrid();
     }
@@ -77,17 +80,17 @@ public class Grid {
         while (toPlace > 0) {
 	    
             // the probability that this square should get a block is
-	    // (blocks still to place) / (squares not yet considered)
-	    // Note that this probability will grow to 1 when there are only as
-	    // many squares left as there are blocks to place.
+            // (blocks still to place) / (squares not yet considered)
+            // Note that this probability will grow to 1 when there are only as
+            // many squares left as there are blocks to place.
             double p = (double)toPlace/remLocs;
             if (rgen.nextDouble() < p) {
-		// only place if won't create a 2x2 square of blocks
-		// if p is 1, place block even if creates square, so as to avoid infinitie loop
+                // only place if won't create a 2x2 square of blocks
+                // if p is 1, place block even if creates square, so as to avoid infinitie loop
                 if (grid[x-1][y]!='b' || grid[x][y-1]!='b' || grid[x-1][y-1]!='b' || p>=.99) {
                     grid[x][y] = 'b';
-		    toPlace--;
-		}
+                    toPlace--;
+                }
             }
             remLocs--;
 	    
@@ -113,8 +116,8 @@ public class Grid {
             }
         }
 
-	// if 2x2 square is all blocks because of one weird case, oh well, put dozer
-	// somewhere at least, even if shares location with block
+        // if 2x2 square is all blocks because of one weird case, oh well, put dozer
+        // somewhere at least, even if shares location with block
         grid[x][y] = 'D';
         dozerX = x;
         dozerY = y;

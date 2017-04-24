@@ -68,7 +68,7 @@ public class TartGene extends GPGene {
 
 	// sensor, evaluate left child if chosen square is empty,
 	// middle child if chosen square has a box, right child if chosen square is a wall 
-        else if (val <=10) {
+        else if (val <=13) {
             int result = -1; 
             if (val==Grid.UR)
                 result = cfg.dozerGrid.sensor(1, -1);
@@ -86,6 +86,20 @@ public class TartGene extends GPGene {
                 result = cfg.dozerGrid.sensor(0, 1);
             else if (val==Grid.LL)
                 result = cfg.dozerGrid.sensor(-1, 1);
+            else if (val==Grid.prog2) {
+                ((TartGene)get(0)).evaluate(cfg, gp, os, out);
+                ((TartGene)get(1)).evaluate(cfg, gp, os, out);
+                return 0;
+            }
+            else if (val==Grid.prog3) {
+                ((TartGene)get(0)).evaluate(cfg, gp, os, out);
+                ((TartGene)get(1)).evaluate(cfg, gp, os, out);
+                ((TartGene)get(2)).evaluate(cfg, gp, os, out);
+                return 0;
+            }
+            else if (val==Grid.ahead2) {
+                result = cfg.dozerGrid.sensor(2, 0);
+            }
 
             ( (TartGene)get(result) ).evaluate(cfg, gp, os, out);
          }
